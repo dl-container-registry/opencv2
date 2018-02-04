@@ -1,6 +1,8 @@
 FROM nvidia/cuda:8.0-cudnn5-devel
 LABEL maintainer="will.price94+docker@gmail.com"
 ARG VERSION=2.4.13.5
+ARG CUDA_ARCH_PTX=""
+ARG CUDA_ARCH_BIN="6.0 6.1"
 
 RUN apt-get update && \
     apt-get install -y wget
@@ -39,12 +41,15 @@ RUN mkdir -p opencv_build && \
         -D WITH_CUDA=ON \
         -D WITH_CUBLAS=1 \
         -D CUDA_FAST_MATH=1 \
-        -D CUDA_ARCH_PTX="6.0 6.1" \
-        -D CUDA_ARCH_BIN="6.0 6.1" \
+        -D CUDA_ARCH_PTX="$CUDA_ARCH_PTX" \
+        -D CUDA_ARCH_BIN="$CUDA_ARCH_BIN" \
         -D ENABLE_FAST_MATH=1 \
         -D INSTALL_C_EXAMPLES=OFF \
-        -D INSTALL_PYTHON_EXAMPLES=ON \
-        -D BUILD_EXAMPLES=ON \
+        -D INSTALL_PYTHON_EXAMPLES=OFF \
+        -D BUILD_EXAMPLES=OFF \
+        -D BUILD_DOCS=OFF \
+        -D BUILD_PERF_TESTS=OFF \
+        -D BUILD_TESTS=OFF \
         -D CMAKE_LIBRARY_PATH=/usr/local/cuda/lib64/stubs \
         ../opencv-$VERSION && \
     make -j $(nproc) && \
