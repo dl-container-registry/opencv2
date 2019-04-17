@@ -1,23 +1,22 @@
-SHELL:=bash
-OPENCV_VERSION ?= 2.4.13.5
-CONTAINER_NAME ?= willprice/opencv2-cuda8
-SINGULARITY_NAME ?= opencv2-4-13-cuda8.img
-TAG ?= $(OPENCV_VERSION)-cuda8
+SHELL := bash
+BASE_NAME := opencv2
+CONTAINER_NAME := willprice/$(BASE_NAME)
+SINGULARITY_NAME := $(BASE_NAME).simg
+TAG := cuda-8.0-cudnn5
 
+.PHONY: all
+all: build singularity
 
 .PHONY: build
 build:
-	docker build -t $(CONTAINER_NAME) .
-
-version.txt: build
-	./tag.sh "$(CONTAINER_NAME)" > version.txt
+	docker build -t $(CONTAINER_NAME):$(TAG) .
 
 .PHONY: push
-push: version.txt
-	docker push $(CONTAINER_NAME)
+push:
+	docker push $(CONTAINER_NAME):$(TAG)
 
 .PHONY: singularity
 singularity: $(SINGULARITY_NAME)
 
-$(SINGULARITY_NAME): tag
-	singularity  build $@ Singularity
+$(SINGULARITY_NAME):
+	singularity build $@ Singularity
