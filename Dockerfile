@@ -1,8 +1,8 @@
 FROM nvidia/cuda:8.0-cudnn5-devel
 LABEL maintainer="will.price94+docker@gmail.com"
 ARG VERSION=2.4.13.5
-ARG CUDA_ARCH_PTX="5.0 5.2 6.0 6.1 7.0"
-ARG CUDA_ARCH_BIN="5.0 5.2 6.0 6.1 7.0"
+ARG CUDA_ARCH_PTX="5.0 5.2 6.0 6.1"
+ARG CUDA_ARCH_BIN="5.0 5.2 6.0 6.1"
 
 RUN apt-get update && \
     apt-get install -y wget
