@@ -1,6 +1,6 @@
 # OpenCV2 Dockerfile
 
-[![Build Status](https://travis-ci.org/dl-container-registry/opencv2.svg?branch=master)](https://travis-ci.org/dl-container-registry/opencv2)
+[![CircleCI branch](https://img.shields.io/circleci/project/github/dl-container-registry/opencv2/master.svg)](https://circleci.com/gh/dl-container-registry/opencv2)
 [![Dockerhub link](https://img.shields.io/badge/hosted-dockerhub-22b8eb.svg)](https://hub.docker.com/r/willprice/opencv2-cuda8/~/settings/)
 [![Singularity hub hosted](https://www.singularity-hub.org/static/img/hosted-singularity--hub-%23e32929.svg)](https://singularity-hub.org/collections/530)
 
